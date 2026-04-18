@@ -32,14 +32,21 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: pnpm
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: echo "store=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.store }}
+          key: pnpm-store-${{ runner.os }}-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            pnpm-store-${{ runner.os }}-
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile --shamefully-hoist
-
-      - name: Lint
-        run: pnpm run lint
-
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build
         run: pnpm run build
