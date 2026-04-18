@@ -1,5 +1,6 @@
-import { PageShell } from "@/components/PageShell";
+import { ParallaxHero } from "@/components/ParallaxHero";
 import { motion } from "framer-motion";
+import heroImg from "@/assets/hero-timeline.jpg";
 
 const points = [
   { t: "2026", c: "magenta", title: "Pipeline Cleanup", body: "Climate tech and AI shift from speculation to disciplined execution." },
@@ -20,33 +21,40 @@ const colorMap: Record<string, string> = {
 };
 
 const Timeline = () => (
-  <PageShell
-    eyebrow="∞ TEMPORAL ATLAS"
-    title={<>The Arc of <span className="text-neon">Intelligence</span></>}
-    intro="From the AI-electrification shock of 2026 to the final evaporation of black holes — a single thread through deep time."
-  >
-    <div className="relative max-w-3xl mx-auto pl-8">
-      <div className="absolute left-2 top-2 bottom-2 w-px bg-gradient-to-b from-neon-cyan via-neon-magenta to-neon-violet opacity-60" />
+  <>
+    <ParallaxHero
+      image={heroImg}
+      alt="Cosmic timeline — galaxies and nebulae stretched across deep space"
+      eyebrow="∞ TEMPORAL ATLAS"
+      tint="180 100% 55%"
+      title={<>The Arc of <span className="text-neon">Intelligence</span></>}
+      intro="From the AI-electrification shock of 2026 to the final evaporation of black holes — a single thread through deep time."
+    />
 
-      {points.map((p, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, delay: i * 0.05 }}
-          className="relative pb-10"
-        >
-          <div className={`absolute -left-[26px] top-2 w-3 h-3 rounded-full ${colorMap[p.c]}`} />
-          <div className="glass rounded-xl p-5 hover:border-neon-cyan/30 transition-all hover:-translate-y-1 duration-300">
-            <p className="font-mono text-xs text-neon-cyan mb-1">T = {p.t}</p>
-            <h3 className="font-display font-semibold text-lg mb-1">{p.title}</h3>
-            <p className="text-muted-foreground text-sm">{p.body}</p>
-          </div>
-        </motion.div>
-      ))}
+    <div className="container pb-16">
+      <div className="relative max-w-3xl mx-auto pl-8">
+        <div className="absolute left-2 top-2 bottom-2 w-px bg-gradient-to-b from-neon-cyan via-neon-magenta to-neon-violet opacity-60" />
+
+        {points.map((p, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: i * 0.05 }}
+            className="relative pb-10"
+          >
+            <div className={`absolute -left-[26px] top-2 w-3 h-3 rounded-full ${colorMap[p.c]}`} />
+            <div className="glass rounded-xl p-5 hover:border-neon-cyan/30 transition-all hover:-translate-y-1 duration-300">
+              <p className="font-mono text-xs text-neon-cyan mb-1">T = {p.t}</p>
+              <h3 className="font-display font-semibold text-lg mb-1">{p.title}</h3>
+              <p className="text-muted-foreground text-sm">{p.body}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </div>
-  </PageShell>
+  </>
 );
 
 export default Timeline;
