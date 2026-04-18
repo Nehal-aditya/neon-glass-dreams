@@ -2,15 +2,18 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Atom, Rocket, Skull, Sparkles, Brain, Globe2 } from "lucide-react";
 import { GlassCard } from "@/components/GlassCard";
+import { Starfield } from "@/components/Starfield";
 
 const Home = () => {
   return (
     <div>
       {/* Hero */}
       <section className="relative min-h-[100vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 grid-bg opacity-60" />
-        <div className="absolute top-1/4 -left-20 w-96 h-96 rounded-full bg-neon-violet/20 blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 rounded-full bg-neon-cyan/20 blur-3xl animate-float" style={{ animationDelay: "2s" }} />
+        <Starfield />
+        <div className="absolute inset-0 grid-bg opacity-40 pointer-events-none" />
+        <div className="absolute top-1/4 -left-20 w-96 h-96 rounded-full bg-neon-violet/10 blur-3xl animate-float pointer-events-none" />
+        <div className="absolute bottom-1/4 -right-20 w-96 h-96 rounded-full bg-neon-cyan/10 blur-3xl animate-float pointer-events-none" style={{ animationDelay: "2s" }} />
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,transparent_35%,hsl(var(--background))_90%)]" />
 
         <div className="container relative z-10 pt-32 pb-16">
           <motion.div
