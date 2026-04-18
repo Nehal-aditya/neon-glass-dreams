@@ -1,7 +1,8 @@
-import { PageShell } from "@/components/PageShell";
+import { ParallaxHero } from "@/components/ParallaxHero";
 import { GlassCard } from "@/components/GlassCard";
 import { KardashevVisualizer } from "@/components/KardashevVisualizer";
 import { Star, Atom, CircleDot, Snowflake } from "lucide-react";
+import heroImg from "@/assets/hero-dyson.jpg";
 
 const eras = [
   {
@@ -23,34 +24,41 @@ const eras = [
 ];
 
 const Cosmic = () => (
-  <PageShell
-    eyebrow="DEEP TIME · 10¹⁴ → 10¹⁰⁰ YEARS"
-    title={<>Cosmic <span className="text-neon">Eras</span></>}
-    intro="Beyond civilizations, beyond stars. The far future of physics and the survival strategies of any intelligence that endures."
-  >
-    <div className="grid md:grid-cols-2 gap-5 mb-16">
-      {eras.map((e, i) => (
-        <GlassCard key={e.name} glow={e.glow} delay={i * 0.1}>
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-11 h-11 rounded-xl glass-neon grid place-items-center">
-              <e.icon className="w-5 h-5 text-neon-cyan" />
+  <>
+    <ParallaxHero
+      image={heroImg}
+      alt="Massive Dyson sphere encasing a brilliant star against deep-space nebula"
+      eyebrow="DEEP TIME · 10¹⁴ → 10¹⁰⁰ YEARS"
+      tint="45 100% 60%"
+      title={<>Cosmic <span className="text-neon">Eras</span></>}
+      intro="Beyond civilizations, beyond stars. The far future of physics and the survival strategies of any intelligence that endures."
+    />
+
+    <div className="container pb-16">
+      <div className="grid md:grid-cols-2 gap-5 mb-16">
+        {eras.map((e, i) => (
+          <GlassCard key={e.name} glow={e.glow} delay={i * 0.1}>
+            <div className="flex items-center justify-between mb-4">
+              <div className="w-11 h-11 rounded-xl glass-neon grid place-items-center">
+                <e.icon className="w-5 h-5 text-neon-cyan" />
+              </div>
+              <span className="font-mono text-xs text-muted-foreground">{e.range}</span>
             </div>
-            <span className="font-mono text-xs text-muted-foreground">{e.range}</span>
-          </div>
-          <h3 className="font-display font-semibold text-xl mb-3">{e.name}</h3>
-          <p className="text-muted-foreground text-sm leading-relaxed">{e.body}</p>
-        </GlassCard>
-      ))}
+            <h3 className="font-display font-semibold text-xl mb-3">{e.name}</h3>
+            <p className="text-muted-foreground text-sm leading-relaxed">{e.body}</p>
+          </GlassCard>
+        ))}
+      </div>
+
+      <h2 className="font-display font-semibold text-3xl mb-3">The Kardashev Scale</h2>
+      <p className="text-muted-foreground mb-6 max-w-2xl">
+        A taxonomy of civilizations by total power consumption. Drag the slider to ascend from planetary
+        mastery to universal manipulation.
+      </p>
+
+      <KardashevVisualizer />
     </div>
-
-    <h2 className="font-display font-semibold text-3xl mb-3">The Kardashev Scale</h2>
-    <p className="text-muted-foreground mb-6 max-w-2xl">
-      A taxonomy of civilizations by total power consumption. Drag the slider to ascend from planetary
-      mastery to universal manipulation.
-    </p>
-
-    <KardashevVisualizer />
-  </PageShell>
+  </>
 );
 
 export default Cosmic;
