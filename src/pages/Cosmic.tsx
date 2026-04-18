@@ -1,5 +1,6 @@
 import { PageShell } from "@/components/PageShell";
 import { GlassCard } from "@/components/GlassCard";
+import { KardashevVisualizer } from "@/components/KardashevVisualizer";
 import { Star, Atom, CircleDot, Snowflake } from "lucide-react";
 
 const eras = [
@@ -19,13 +20,6 @@ const eras = [
     icon: Snowflake, glow: "lime" as const, name: "Dark Era", range: "> 10¹⁰⁰ yr",
     body: "Heat death. Thermodynamic equilibrium. No work can be performed. Computation, intelligence, all activity ceases. Only stray particle annihilations across timescales that dwarf all that came before."
   },
-];
-
-const k_scale = [
-  { type: "Type I — Planetary", power: "10¹⁶ W", desc: "Mastery of all energy on the home planet." },
-  { type: "Type II — Stellar", power: "10²⁶ W", desc: "Harness a host star (e.g., Dyson Sphere)." },
-  { type: "Type III — Galactic", power: "10³⁶ W", desc: "Command an entire galaxy's energy budget." },
-  { type: "Type IV — Universal", power: "10⁴⁶ W", desc: "Manipulate the energy of the universe itself." },
 ];
 
 const Cosmic = () => (
@@ -49,29 +43,13 @@ const Cosmic = () => (
       ))}
     </div>
 
-    <h2 className="font-display font-semibold text-3xl mb-5">The Kardashev Scale</h2>
-    <p className="text-muted-foreground mb-6 max-w-2xl">A taxonomy of civilizations by total power consumption — a measure of cosmic ambition.</p>
+    <h2 className="font-display font-semibold text-3xl mb-3">The Kardashev Scale</h2>
+    <p className="text-muted-foreground mb-6 max-w-2xl">
+      A taxonomy of civilizations by total power consumption. Drag the slider to ascend from planetary
+      mastery to universal manipulation.
+    </p>
 
-    <div className="glass-neon rounded-2xl overflow-hidden">
-      <table className="w-full text-sm">
-        <thead className="bg-white/5">
-          <tr>
-            <th className="text-left p-4 font-display font-medium">Type</th>
-            <th className="text-left p-4 font-display font-medium font-mono">Power</th>
-            <th className="text-left p-4 font-display font-medium">Capability</th>
-          </tr>
-        </thead>
-        <tbody>
-          {k_scale.map((k, i) => (
-            <tr key={k.type} className="border-t border-white/5 hover:bg-white/5 transition-colors">
-              <td className="p-4 font-medium">{k.type}</td>
-              <td className="p-4 font-mono text-neon-cyan">{k.power}</td>
-              <td className="p-4 text-muted-foreground">{k.desc}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <KardashevVisualizer />
   </PageShell>
 );
 
