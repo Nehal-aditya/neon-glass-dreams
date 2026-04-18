@@ -2,7 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -11,7 +12,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
@@ -25,33 +26,27 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: latest
-      
-      - name: Setup Node
+          run_install: false
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
+          cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build
-        env:
-          # For project sites (https://<user>.github.io/<repo>/), BASE_PATH must be "/<repo>/".
-          # For user/org sites (https://<user>.github.io/), set BASE_PATH to "/".
-          BASE_PATH: /${{ github.event.repository.name }}/
         run: pnpm run build
 
-      - name: Add SPA 404 fallback
-        run: cp dist/index.html dist/404.html
-
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v4
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: dist
 
   deploy:
     environment:
