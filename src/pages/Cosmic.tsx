@@ -22,13 +22,6 @@ const eras = [
   },
 ];
 
-const k_scale = [
-  { type: "Type I — Planetary", power: "10¹⁶ W", desc: "Mastery of all energy on the home planet." },
-  { type: "Type II — Stellar", power: "10²⁶ W", desc: "Harness a host star (e.g., Dyson Sphere)." },
-  { type: "Type III — Galactic", power: "10³⁶ W", desc: "Command an entire galaxy's energy budget." },
-  { type: "Type IV — Universal", power: "10⁴⁶ W", desc: "Manipulate the energy of the universe itself." },
-];
-
 const Cosmic = () => (
   <PageShell
     eyebrow="DEEP TIME · 10¹⁴ → 10¹⁰⁰ YEARS"
